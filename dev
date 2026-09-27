@@ -1,0 +1,652 @@
+#!/usr/bin/env bash
+
+set -u
+
+readonly APP_NAME="Laravel Dev Helper"
+readonly APP_VERSION="1.0.0"
+readonly APP_AUTHOR="Nourivex Team"
+readonly APP_LICENSE="MIT"
+
+# ─────────────────────────────────────────────
+# Colors
+# ─────────────────────────────────────────────
+
+if [[ -t 1 ]]; then
+    readonly BOLD=$'\033[1m'
+    readonly GREEN=$'\033[0;32m'
+    readonly YELLOW=$'\033[0;33m'
+    readonly CYAN=$'\033[0;36m'
+    readonly RED=$'\033[0;31m'
+    readonly DIM=$'\033[2m'
+    readonly RESET=$'\033[0m'
+else
+    readonly BOLD=''
+    readonly GREEN=''
+    readonly YELLOW=''
+    readonly RED=''
+    readonly CYAN=''
+    readonly DIM=''
+    readonly RESET=''
+fi
+
+# ─────────────────────────────────────────────
+# Output helpers
+# ─────────────────────────────────────────────
+
+info() {
+    printf "${CYAN}[dev]${RESET} %s\n" "$1"
+}
+
+success() {
+    printf "${GREEN}✓${RESET} %s\n" "$1"
+}
+
+warning() {
+    printf "${YELLOW}⚠${RESET} %s\n" "$1"
+}
+
+error() {
+    printf "${RED}✗${RESET} %s\n" "$1" >&2
+}
+
+# ─────────────────────────────────────────────
+# Project detection
+# ─────────────────────────────────────────────
+
+has_command() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+is_laravel_project() {
+    [[ -f "artisan" ]]
+}
+
+has_ddev_project() {
+    [[ -f ".ddev/config.yaml" ]]
+}
+
+has_ddev() {
+    has_command ddev
+}
+
+has_php() {
+    has_command php
+}
+
+has_composer() {
+    has_command composer
+}
+
+has_npm() {
+    has_command npm
+}
+
+has_env_file() {
+    [[ -f ".env" ]]
+}
+
+has_env_example() {
+    [[ -f ".env.example" ]]
+}
+
+# ─────────────────────────────────────────────
+# Environment detection
+# ─────────────────────────────────────────────
+
+detect_environment() {
+    if has_ddev && has_ddev_project; then
+        echo "ddev"
+        return 0
+    fi
+
+    if has_php; then
+        echo "php"
+        return 0
+    fi
+
+    echo "none"
+}
+
+# ─────────────────────────────────────────────
+# Development setup
+# ─────────────────────────────────────────────
+
+run_setup() {
+    local environment
+
+    if ! is_laravel_project; then
+        error "Laravel project not detected."
+        error "Run this command from the Laravel project root."
+        return 1
+    fi
+
+    printf '\n'
+    printf '%s\n' "${BOLD}${CYAN}Laravel Dev Helper — Setup${RESET}"
+    printf '%s\n' "────────────────────────────────────────"
+    printf '\n'
+
+    environment="$(detect_environment)"
+
+    # ─────────────────────────────────────────
+    # DDEV setup
+    # ─────────────────────────────────────────
+
+    if [[ "$environment" == "ddev" ]]; then
+
+        info "Starting DDEV..."
+        if ddev start; then
+            success "DDEV started"
+        else
+            error "Failed to start DDEV."
+            return 1
+        fi
+
+        printf '\n'
+
+        # Composer
+        info "Installing Composer dependencies..."
+
+        if ddev composer install; then
+            success "Composer dependencies installed"
+        else
+            error "Composer install failed."
+            return 1
+        fi
+
+        printf '\n'
+
+        # Environment file
+        if has_env_file; then
+            success ".env already exists"
+        elif has_env_example; then
+            info "Creating .env from .env.example..."
+
+            cp .env.example .env
+
+            if [[ -f ".env" ]]; then
+                success ".env created"
+            else
+                error "Failed to create .env."
+                return 1
+            fi
+        else
+            warning ".env.example not found"
+        fi
+
+        # Application key
+        if [[ -f ".env" ]]; then
+            info "Generating application key..."
+
+            if ddev artisan key:generate --force; then
+                success "Application key generated"
+            else
+                error "Failed to generate application key."
+                return 1
+            fi
+        fi
+
+        printf '\n'
+
+        # Node dependencies
+        info "Installing Node dependencies..."
+
+        if ddev npm install; then
+            success "Node dependencies installed"
+        else
+            error "npm install failed."
+            return 1
+        fi
+
+        printf '\n'
+
+        # Frontend build
+        info "Building frontend assets..."
+
+        if ddev npm run build; then
+            success "Frontend assets built"
+        else
+            error "Frontend build failed."
+            return 1
+        fi
+
+        printf '\n'
+
+        success "Development environment is ready."
+        printf '\n'
+
+        info "Application:"
+        printf '  %s\n' "$(ddev describe 2>/dev/null | grep -m1 'https://')"
+
+        printf '\n'
+        warning "Database migrations were not executed."
+        printf '  Run: %s\n' "${GREEN}./dev migrate${RESET}"
+
+        printf '\n'
+
+        return 0
+    fi
+
+    # ─────────────────────────────────────────
+    # Local PHP setup
+    # ─────────────────────────────────────────
+
+    if [[ "$environment" == "php" ]]; then
+
+        warning "DDEV project is not available."
+        info "Using local PHP environment."
+
+        printf '\n'
+
+        # Composer
+        if ! has_composer; then
+            error "Composer not found."
+            error "Install Composer before running setup."
+            return 1
+        fi
+
+        info "Installing Composer dependencies..."
+
+        if composer install; then
+            success "Composer dependencies installed"
+        else
+            error "Composer install failed."
+            return 1
+        fi
+
+        printf '\n'
+
+        # Environment file
+        if has_env_file; then
+            success ".env already exists"
+        elif has_env_example; then
+            info "Creating .env from .env.example..."
+
+            cp .env.example .env
+
+            if [[ -f ".env" ]]; then
+                success ".env created"
+            else
+                error "Failed to create .env."
+                return 1
+            fi
+        else
+            warning ".env.example not found"
+        fi
+
+        # Application key
+        if [[ -f ".env" ]]; then
+            info "Generating application key..."
+
+            if php artisan key:generate --force; then
+                success "Application key generated"
+            else
+                error "Failed to generate application key."
+                return 1
+            fi
+        fi
+
+        printf '\n'
+
+        # npm
+        if ! has_npm; then
+            error "npm not found."
+            error "Install Node.js before running frontend setup."
+            return 1
+        fi
+
+        info "Installing Node dependencies..."
+
+        if npm install; then
+            success "Node dependencies installed"
+        else
+            error "npm install failed."
+            return 1
+        fi
+
+        printf '\n'
+
+        info "Building frontend assets..."
+
+        if npm run build; then
+            success "Frontend assets built"
+        else
+            error "Frontend build failed."
+            return 1
+        fi
+
+        printf '\n'
+
+        success "Local development environment is ready."
+
+        printf '\n'
+        warning "Database migrations were not executed."
+        printf '  Run: %s\n' "${GREEN}./dev migrate${RESET}"
+
+        printf '\n'
+
+        return 0
+    fi
+
+    # ─────────────────────────────────────────
+    # No environment
+    # ─────────────────────────────────────────
+
+    error "No supported development environment found."
+    printf '\n'
+
+    printf 'Install one of the following:\n'
+    printf '  • DDEV: https://ddev.com/get-started/\n'
+    printf '  • PHP + Composer + Node.js\n'
+
+    printf '\n'
+
+    return 1
+}
+
+# ─────────────────────────────────────────────
+# Help
+# ─────────────────────────────────────────────
+
+show_help() {
+    cat <<EOF
+
+${BOLD}${CYAN}${APP_NAME}${RESET}
+${DIM}Environment-aware Laravel Artisan launcher.${RESET}
+
+${BOLD}Author${RESET}   : ${APP_AUTHOR}
+${BOLD}Version${RESET}  : ${APP_VERSION}
+${BOLD}License${RESET}  : ${APP_LICENSE}
+
+${BOLD}${CYAN}Usage${RESET}
+  ${GREEN}./dev <artisan-command> [options]${RESET}
+
+${BOLD}${CYAN}Examples${RESET}
+  ${GREEN}./dev make:model User -m${RESET}
+  ${GREEN}./dev make:controller AuthController${RESET}
+  ${GREEN}./dev make:migration create_users_table${RESET}
+  ${GREEN}./dev migrate${RESET}
+  ${GREEN}./dev migrate:fresh --seed${RESET}
+  ${GREEN}./dev route:list${RESET}
+  ${GREEN}./dev test${RESET}
+  ${GREEN}./dev tinker${RESET}
+
+${BOLD}${CYAN}Helper options${RESET}
+  ${YELLOW}-h, --help${RESET}       Show this help message
+  ${YELLOW}-v, --version${RESET}    Show helper version
+      ${YELLOW}--setup${RESET}       Setup development environment
+      ${YELLOW}--doctor${RESET}     Check development environment
+      ${YELLOW}--env${RESET}        Show detected environment
+
+${BOLD}${CYAN}Setup${RESET}
+  ${GREEN}./dev --setup${RESET}
+
+  Installs Composer and Node dependencies,
+  starts DDEV when available, prepares .env,
+  generates the application key, and builds
+  frontend assets.
+
+${DIM}Database migrations are not executed automatically.${RESET}
+
+${BOLD}${CYAN}Environment priority${RESET}
+  ${GREEN}1.${RESET} DDEV project
+  ${GREEN}2.${RESET} Local PHP
+  ${GREEN}3.${RESET} Error
+
+${BOLD}${CYAN}Behavior${RESET}
+  If a DDEV project is detected, Artisan runs through DDEV.
+  Otherwise, the helper falls back to local PHP.
+
+${DIM}All arguments not recognized by this helper are passed
+directly to Laravel Artisan.${RESET}
+
+EOF
+}
+
+# ─────────────────────────────────────────────
+# Version
+# ─────────────────────────────────────────────
+
+show_version() {
+    printf '%s v%s\n' "$APP_NAME" "$APP_VERSION"
+    printf '%s\n' "$APP_AUTHOR"
+}
+
+
+# ─────────────────────────────────────────────
+# Environment information
+# ─────────────────────────────────────────────
+
+get_php_version() {
+    php -r 'echo PHP_VERSION;' 2>/dev/null || echo "unknown"
+}
+
+get_ddev_version() {
+    ddev version 2>/dev/null | head -n 1 || echo "unknown"
+}
+
+get_laravel_version() {
+    if ! is_laravel_project; then
+        echo "not a Laravel project"
+        return
+    fi
+
+    if has_ddev && has_ddev_project; then
+        ddev artisan --version 2>/dev/null || echo "unknown"
+    elif has_php; then
+        php artisan --version 2>/dev/null || echo "unknown"
+    else
+        echo "unknown"
+    fi
+}
+
+show_env() {
+    local environment
+    environment="$(detect_environment)"
+
+    printf '\n'
+    printf '%s\n' "$APP_NAME"
+    printf '%s\n' "────────────────────────────────────────"
+
+    printf 'Author         %s\n' "$APP_AUTHOR"
+    printf 'Version        %s\n' "$APP_VERSION"
+
+    printf '\n'
+    printf '%s\n' "Project"
+    printf '%s\n' "────────────────────────────────────────"
+
+    if is_laravel_project; then
+        printf 'Laravel        %s\n' "$(get_laravel_version)"
+    else
+        printf 'Laravel        not detected\n'
+    fi
+
+    printf '\n'
+    printf '%s\n' "Environment"
+    printf '%s\n' "────────────────────────────────────────"
+
+    if has_php; then
+        printf 'PHP            %s\n' "$(get_php_version)"
+    else
+        printf 'PHP            not found\n'
+    fi
+
+    if has_ddev; then
+        printf 'DDEV           %s\n' "$(get_ddev_version)"
+    else
+        printf 'DDEV           not found\n'
+    fi
+
+    printf '\n'
+    printf '%s\n' "Backend"
+    printf '%s\n' "────────────────────────────────────────"
+
+    case "$environment" in
+        ddev)
+            printf 'Selected       DDEV\n'
+            printf 'Reason         DDEV project detected\n'
+            ;;
+        php)
+            printf 'Selected       Local PHP\n'
+            printf 'Reason         DDEV unavailable\n'
+            ;;
+        none)
+            printf 'Selected       None\n'
+            printf 'Reason         Neither DDEV nor PHP found\n'
+            ;;
+    esac
+
+    printf '\n'
+}
+
+# ─────────────────────────────────────────────
+# Doctor
+# ─────────────────────────────────────────────
+
+show_doctor() {
+    local failed=0
+    local environment
+
+    printf '\n'
+    printf '%s\n' "$APP_NAME — Doctor"
+    printf '%s\n' "────────────────────────────────────────"
+
+    if is_laravel_project; then
+        success "Laravel project      artisan found"
+    else
+        error "Laravel project      artisan not found"
+        failed=1
+    fi
+
+    if has_php; then
+        success "PHP                  $(get_php_version)"
+    else
+        warning "PHP                  not found"
+    fi
+
+    if has_ddev; then
+        success "DDEV                 installed"
+    else
+        warning "DDEV                 not found"
+    fi
+
+    if has_ddev_project; then
+        success ".ddev/config.yaml    found"
+    else
+        warning ".ddev/config.yaml    not found"
+    fi
+
+    environment="$(detect_environment)"
+
+    printf '\n'
+    printf '%s\n' "Environment"
+    printf '%s\n' "────────────────────────────────────────"
+
+    case "$environment" in
+        ddev)
+            success "Backend              DDEV"
+            success "Status               READY"
+            ;;
+
+        php)
+            success "Backend              Local PHP"
+            success "Status               READY"
+            ;;
+
+        none)
+            error "Backend              unavailable"
+            error "Status               NOT READY"
+            failed=1
+            ;;
+    esac
+
+    printf '\n'
+
+    if [[ "$failed" -eq 0 ]]; then
+        success "Environment check passed."
+    else
+        error "Environment check failed."
+    fi
+
+    printf '\n'
+
+    return "$failed"
+}
+
+# ─────────────────────────────────────────────
+# Run Artisan
+# ─────────────────────────────────────────────
+
+run_artisan() {
+    local environment
+
+    if ! is_laravel_project; then
+        error "Laravel project not detected."
+        error "Run this command from the Laravel project root."
+        return 1
+    fi
+
+    environment="$(detect_environment)"
+
+    case "$environment" in
+        ddev)
+            info "Using DDEV"
+            exec ddev artisan "$@"
+            ;;
+
+        php)
+            info "Using local PHP"
+            exec php artisan "$@"
+            ;;
+
+        none)
+            error "Cannot run Laravel Artisan."
+            printf '\n'
+            printf 'Neither DDEV nor PHP was found.\n'
+            printf '\n'
+            printf 'Install one of:\n'
+            printf '  • DDEV: https://ddev.com/get-started/\n'
+            printf '  • PHP:  https://www.php.net/downloads.php\n'
+            printf '\n'
+            return 1
+            ;;
+    esac
+}
+
+# ─────────────────────────────────────────────
+# Main
+# ─────────────────────────────────────────────
+
+main() {
+    if [[ "$#" -eq 0 ]]; then
+        show_help
+        return 0
+    fi
+
+    case "$1" in
+        -h|--help)
+            show_help
+            ;;
+
+        -v|--version)
+            show_version
+            ;;
+
+        --setup)
+            run_setup
+            ;;
+
+        --doctor)
+            show_doctor
+            ;;
+
+        --env)
+            show_env
+            ;;
+
+        *)
+            run_artisan "$@"
+            ;;
+    esac
+}
+
+main "$@"
