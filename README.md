@@ -1,49 +1,148 @@
-# Nourivex Laravel Template
-
 <p align="center">
-  <img src="public/logo.png" width="96" alt="Nourivex Logo">
+  <img src="public/logo.png" width="96" alt="PaduKerja Logo">
 </p>
 
-<p align="center">
-  <strong>Modern Laravel Engineering Template</strong>
-</p>
+<h1 align="center">PaduKerja</h1>
 
 <p align="center">
-  A structured Laravel foundation for building maintainable web applications with a simple, cross-platform development workflow.
+  <strong>Platform Rekrutmen Terintegrasi Berbasis Microservice</strong><br>
+  <em>Automated Skill-Matchmaking Engine & Multi-Stage Pipeline Tracker</em>
 </p>
 
 <p align="center">
 
 ![Laravel](https://img.shields.io/badge/Laravel-13.x-FF2D20?style=flat-square&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.4%2B-777BB4?style=flat-square&logo=php&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-24.x-339933?style=flat-square&logo=node.js&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-Microservices-0D1117?style=flat-square)
+![API](https://img.shields.io/badge/API-REST%20JSON-blue?style=flat-square)
 ![DDEV](https://img.shields.io/badge/DDEV-supported-0D1117?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Platform](https://img.shields.io/badge/Platform-Fedora%20%2F%20Linux-294172?style=flat-square&logo=fedora&logoColor=white)
+![Team](https://img.shields.io/badge/Team-Kelompok%204%20UHN-orange?style=flat-square)
 
 </p>
 
 ---
 
-## About
+## Informasi Akademik
 
-**Nourivex Laravel Template** is a reusable Laravel project foundation developed under **Nourivex**.
+| | |
+|---|---|
+| **Mata Kuliah** | Pemrograman Web Service (5537344 / 3 SKS) |
+| **Universitas** | Universitas Harkat Negeri |
+| **Dosen Pengampu** | Zaenul Arif, S.Kom., M.Kom |
+| **Kelompok** | 4 |
+| **Semester** | 7 (Ganjil) |
 
-The template keeps Laravel's standard architecture while providing a more opinionated starting point for development, including:
+---
 
-- Modern Nourivex-branded welcome page
-- Laravel 13 foundation
-- Vite-based frontend workflow
-- Cross-platform development helper
-- DDEV-first development environment
-- Local PHP fallback
-- Automated project setup
-- Environment diagnostics
-- Consistent Linux and Windows commands
-- Developer-oriented project documentation
+## Executive Summary
 
-The goal is simple:
+**PaduKerja** adalah platform rekrutmen terintegrasi yang dibangun dengan arsitektur **microservice** dan **REST API** berstandar industri. Sistem ini dirancang untuk menyelesaikan dua masalah fundamental dalam proses rekrutmen digital:
 
-> **Clone → Setup → Develop.**
+1. **Bagi Pencari Kerja** — fenomena *"black-hole resume"* di mana lamaran dikirim namun tidak pernah ada kejelasan status atau feedback.
+2. **Bagi Recruiter** — tumpukan ratusan CV PDF yang tidak relevan, tanpa mekanisme filter otomatis berbasis keahlian.
+
+---
+
+## Problem Statement
+
+Proses rekrutmen konvensional memiliki inefisiensi kritis:
+
+- **Pencari kerja** mengirim lamaran ke puluhan lowongan tanpa mengetahui seberapa cocok profil mereka dengan kualifikasi yang diminta, dan tidak memiliki visibilitas terhadap tahapan seleksi.
+- **Recruiter** harus menyaring ratusan CV secara manual, menghabiskan waktu untuk profil yang tidak memenuhi kualifikasi, dan kesulitan mengelola pipeline seleksi multi-tahap.
+
+---
+
+## Value Proposition
+
+PaduKerja menghadirkan tiga solusi utama:
+
+### 1. 🎯 Automated Skill-Matchmaking Engine
+Kalkulasi persentase kecocokan skill profil pelamar versus kualifikasi lowongan secara **real-time** melalui API. Recruiter langsung mendapatkan daftar pelamar terurut berdasarkan skor kecocokan.
+
+### 2. 📊 Multi-Stage Transparent Pipeline Tracker
+Status seleksi bertahap yang transparan bagi kedua pihak:
+
+```
+Screening → Assessment → Interview → Offering / Rejected
+```
+
+Pelamar dapat memantau posisi mereka di pipeline secara real-time.
+
+### 3. 🏗️ Desain Microservice Terdistribusi
+4 service independen dengan pola **database-per-service**, berkomunikasi melalui kontrak **REST API JSON** yang ketat sesuai kaidah fondasi HTTP:
+- Status codes `2xx` / `4xx` / `5xx`
+- Semantik methods `GET` / `POST` / `PUT` / `PATCH` / `DELETE`
+- Headers `Content-Type` & `Accept: application/json`
+
+---
+
+## Arsitektur Microservices & Pembagian Tugas Tim
+
+| # | Service | Deskripsi | Penanggung Jawab |
+|---|---------|-----------|------------------|
+| 1 | **Auth & Profile Service** | Autentikasi JWT multi-role (`applicant`, `recruiter`, `admin`), manajemen profil pengguna, dan skill matrix profile | **MUHAMMAD AFFIF** |
+| 2 | **Job Catalog Service** | Manajemen lowongan pekerjaan, kuota posisi, requirements & skill tagging per lowongan | **MUHAMAD FAHREN ANDREAN RANGKUTI** |
+| 3 | **Application & Matchmaking Service** | Upload CV, pengajuan lamaran, dan scoring engine untuk kalkulasi match percentage | **NABE'ELA AYU NING TYAZ ZAHRA** |
+| 4 | **Recruitment Pipeline Service** | Kanban stage timeline, transisi tahapan seleksi, dan interview scheduling | **MUHAMMAD YASIR ILHAM NABIL** |
+
+> Setiap anggota bertanggung jawab penuh atas **desain API**, **implementasi**, **testing**, dan **dokumentasi** service masing-masing.
+
+---
+
+## Konvensi Komunikasi REST API
+
+### JSON Envelope Standar
+
+Seluruh response API mengikuti format envelope yang konsisten:
+
+```json
+{
+  "status": "success | error",
+  "message": "Human-readable message",
+  "data": { },
+  "meta": {
+    "timestamp": "2026-10-02T15:00:00+07:00",
+    "version": "1.0.0"
+  }
+}
+```
+
+### HTTP Status Codes
+
+| Code | Makna | Penggunaan |
+|------|-------|------------|
+| `200` | OK | Request berhasil, data dikembalikan |
+| `201` | Created | Resource baru berhasil dibuat |
+| `400` | Bad Request | Request tidak valid / malformed |
+| `401` | Unauthorized | Token tidak ada atau expired |
+| `403` | Forbidden | Token valid, tapi role tidak memiliki akses |
+| `404` | Not Found | Resource tidak ditemukan |
+| `409` | Conflict | Konflik data (e.g. email sudah terdaftar) |
+| `422` | Unprocessable Entity | Validation error pada field tertentu |
+| `500` | Internal Server Error | Kesalahan tidak terduga di server |
+
+### Semantik HTTP Methods
+
+| Method | Semantik | Contoh |
+|--------|----------|--------|
+| `GET` | Mengambil data (read-only, idempotent) | `GET /api/jobs` |
+| `POST` | Membuat resource baru | `POST /api/jobs` |
+| `PUT` | Mengganti seluruh resource | `PUT /api/jobs/{id}` |
+| `PATCH` | Memperbarui sebagian resource | `PATCH /api/users/{id}/skills` |
+| `DELETE` | Menghapus resource | `DELETE /api/jobs/{id}` |
+
+> 📄 Dokumentasi lengkap kontrak API tersedia di [`docs/API_CONTRACT_STANDARDS.md`](docs/API_CONTRACT_STANDARDS.md)
+
+---
+
+## Dokumentasi Proyek
+
+| Dokumen | Deskripsi |
+|---------|-----------|
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Arsitektur sistem, diagram topologi, komunikasi inter-service, dan logika matchmaking engine |
+| [`docs/API_CONTRACT_STANDARDS.md`](docs/API_CONTRACT_STANDARDS.md) | Standar request/response payload, header wajib, format error, dan contoh endpoint |
+| [`docs/SPRINT_PLAN.md`](docs/SPRINT_PLAN.md) | Pemetaan milestone perkuliahan, sprint plan, dan product backlog |
 
 ---
 
@@ -51,23 +150,24 @@ The goal is simple:
 
 | Technology | Purpose |
 |---|---|
-| Laravel 13 | Application framework |
+| Laravel 13 | Application framework (per-service) |
 | PHP 8.4+ | Backend runtime |
 | Composer | PHP dependency management |
 | Node.js 24+ | Frontend tooling |
 | npm | JavaScript dependency management |
 | Vite | Frontend asset bundling |
 | DDEV | Local development environment |
-| MariaDB | Development database |
+| MariaDB | Database (per-service instance) |
 | Tailwind CSS | UI styling |
+| JWT (tymon/jwt-auth) | API authentication |
 
 ---
 
+# Local Development & Infrastructure Setup
+
 ## Requirements
 
-### Recommended
-
-For the DDEV workflow:
+### Recommended (DDEV Workflow)
 
 - Git
 - DDEV
@@ -77,7 +177,7 @@ For the DDEV workflow:
 
 DDEV provides the PHP, database, and web-server environment used by the project.
 
-### Local PHP fallback
+### Local PHP Fallback
 
 The development helper can also work without DDEV when the local environment provides:
 
@@ -88,31 +188,24 @@ The development helper can also work without DDEV when the local environment pro
 
 ---
 
-# Getting Started
+## Getting Started
 
-## 1. Clone the repository
-
-```bash
-git clone https://github.com/Nourivex/nourivex-laravel-template.git
-````
-
-Enter the project:
+### 1. Clone the repository
 
 ```bash
-cd nourivex-laravel-template
+git clone <repository-url>
+cd PaduKerja
 ```
 
----
+### 2. Run project setup
 
-## 2. Run project setup
-
-### Linux / macOS
+**Linux / macOS:**
 
 ```bash
 ./dev --setup
 ```
 
-### Windows
+**Windows:**
 
 ```bat
 dev.bat --setup
@@ -120,7 +213,7 @@ dev.bat --setup
 
 The setup helper will automatically detect the available development environment.
 
-### With DDEV
+#### With DDEV
 
 The helper will:
 
@@ -131,211 +224,40 @@ The helper will:
 5. Install Node dependencies
 6. Build frontend assets
 
-### Without DDEV
+#### Without DDEV
 
-The helper falls back to the local PHP environment and uses:
-
-```text
-composer
-php artisan
-npm
-```
-
-when the required tools are available.
+The helper falls back to the local PHP environment and uses `composer`, `php artisan`, and `npm` when the required tools are available.
 
 ---
 
-## Development Setup Flow
-
-```text
-Clone Repository
-       │
-       ▼
-   ./dev --setup
-       │
-       ▼
-Detect Environment
-       │
-   ┌───┴────┐
-   │        │
- DDEV     Local PHP
-   │        │
-   ▼        ▼
-Composer  Composer
-   │        │
-   ▼        ▼
- .env     .env
-   │        │
-   ▼        ▼
-App Key  App Key
-   │        │
-   ▼        ▼
-  npm      npm
-   │        │
-   ▼        ▼
-Vite Build
-       │
-       ▼
-     READY
-```
-
-Database migrations are intentionally **not executed automatically**.
-
-This prevents the setup helper from making assumptions about the project's database state.
-
----
-
-# Development Helper
+## Development Helper
 
 The project includes two equivalent development helpers:
 
 ```text
-Linux / macOS
-./dev
-
-Windows
-dev.bat
+Linux / macOS:  ./dev
+Windows:        dev.bat
 ```
 
-Both provide the same basic interface.
-
----
-
-## Help
-
-Linux:
+### Common Commands
 
 ```bash
-./dev --help
-```
+# Setup & diagnostics
+./dev --setup          # Full project setup
+./dev --doctor         # Environment diagnostics
+./dev --env            # Environment information
+./dev --help           # Show help
+./dev --version        # Show version
 
-Windows:
+# Database
+./dev migrate                 # Run migrations
+./dev migrate:fresh --seed    # Fresh database with seeders
 
-```bat
-dev.bat --help
-```
-
----
-
-## Version
-
-```bash
-./dev --version
-```
-
-or:
-
-```bat
-dev.bat --version
-```
-
----
-
-## Setup
-
-Prepare a fresh development environment:
-
-```bash
-./dev --setup
-```
-
-Windows:
-
-```bat
-dev.bat --setup
-```
-
----
-
-## Environment Diagnostics
-
-Check the development environment:
-
-```bash
-./dev --doctor
-```
-
-Example:
-
-```text
-✓ Laravel project      artisan found
-✓ PHP                  8.4.x
-✓ Composer             installed
-✓ Node/npm             installed
-✓ DDEV                 installed
-✓ .ddev/config.yaml    found
-
-Environment
-────────────────────────────────────────
-✓ Backend              DDEV
-✓ Status               READY
-```
-
----
-
-## Environment Information
-
-Display detected project and environment information:
-
-```bash
-./dev --env
-```
-
-This can show:
-
-* Laravel version
-* PHP version
-* DDEV version
-* Selected backend
-* Detected development environment
-
----
-
-# Artisan Commands
-
-The helper acts as a shortcut for Laravel Artisan.
-
-Instead of:
-
-```bash
-ddev artisan make:model User -m
-```
-
-you can use:
-
-```bash
+# Artisan shortcuts
 ./dev make:model User -m
-```
-
-Instead of:
-
-```bash
-ddev artisan make:controller AuthController
-```
-
-use:
-
-```bash
 ./dev make:controller AuthController
-```
-
-Examples:
-
-```bash
-./dev make:model User -m
-
-./dev make:controller AuthController
-
-./dev make:migration create_users_table
-
-./dev migrate
-
-./dev migrate:fresh --seed
-
 ./dev route:list
-
 ./dev test
-
 ./dev tinker
 ```
 
@@ -343,31 +265,53 @@ All arguments that are not recognized as helper options are passed directly to L
 
 ---
 
-# Environment Priority
-
-The helper uses the following priority:
+## Environment Priority
 
 ```text
-1. DDEV project
-2. Local PHP
+1. DDEV project    → preferred
+2. Local PHP       → fallback
 3. Error
 ```
 
-If both DDEV and local PHP are available and the current directory contains:
-
-```text
-.ddev/config.yaml
-```
-
-the helper uses DDEV.
-
-Otherwise, it falls back to the local PHP environment.
+If both DDEV and local PHP are available and `.ddev/config.yaml` exists, the helper uses DDEV. Otherwise, it falls back to the local PHP environment.
 
 ---
 
-# Project Structure
+## Frontend
 
-The template follows Laravel's standard project structure.
+Frontend assets are managed through Vite.
+
+```bash
+npm install        # Install dependencies
+npm run build      # Build production assets
+```
+
+When using DDEV:
+
+```bash
+ddev npm install
+ddev npm run build
+```
+
+The development helper performs these steps automatically during `./dev --setup`.
+
+---
+
+## Database
+
+Migrations are intentionally manual to prevent assumptions about database state.
+
+```bash
+./dev migrate              # Run migrations
+./dev migrate:fresh        # Fresh database
+./dev migrate:fresh --seed # With seeders
+```
+
+> **Warning:** `migrate:fresh` drops all tables before recreating them. Use it only in development.
+
+---
+
+## Project Structure
 
 ```text
 .
@@ -375,6 +319,10 @@ The template follows Laravel's standard project structure.
 ├── bootstrap/
 ├── config/
 ├── database/
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── API_CONTRACT_STANDARDS.md
+│   └── SPRINT_PLAN.md
 ├── public/
 │   ├── build/
 │   ├── favicon.ico
@@ -397,184 +345,24 @@ The template follows Laravel's standard project structure.
 └── README.md
 ```
 
-The template intentionally keeps Laravel's familiar structure so developers can work with standard Laravel tooling without learning a new application architecture.
+---
+
+## Contributing
+
+Kontribusi dan saran perbaikan sangat diterima.
+
+Sebelum submit perubahan:
+
+1. Pertahankan struktur Laravel standar.
+2. Hindari dependency yang tidak perlu.
+3. Jaga konsistensi behavior helper Linux dan Windows.
+4. Test perubahan di environment yang sesuai.
+5. Update dokumentasi ketika behavior berubah.
+6. Ikuti konvensi REST API yang telah ditetapkan.
 
 ---
 
-# Frontend
-
-Frontend assets are managed through Vite.
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Build production assets:
-
-```bash
-npm run build
-```
-
-When using DDEV:
-
-```bash
-ddev npm install
-ddev npm run build
-```
-
-The development helper performs these steps automatically during:
-
-```bash
-./dev --setup
-```
-
----
-
-# DDEV
-
-When a DDEV project is available, the recommended workflow is:
-
-```bash
-ddev start
-```
-
-Check the project:
-
-```bash
-ddev describe
-```
-
-Run Artisan:
-
-```bash
-ddev artisan
-```
-
-Run Composer:
-
-```bash
-ddev composer install
-```
-
-Run npm:
-
-```bash
-ddev npm install
-```
-
-The `dev` helper provides shorter equivalents for common operations.
-
----
-
-# Database
-
-The template is designed to work with the database configuration provided by the Laravel application and DDEV environment.
-
-Migrations are intentionally manual.
-
-Run migrations with:
-
-```bash
-./dev migrate
-```
-
-or:
-
-```bash
-dev.bat migrate
-```
-
-For a fresh database:
-
-```bash
-./dev migrate:fresh
-```
-
-With seeders:
-
-```bash
-./dev migrate:fresh --seed
-```
-
-> **Warning:** `migrate:fresh` drops all tables before recreating them. Use it only when appropriate for the development environment.
-
----
-
-# Design Philosophy
-
-Nourivex Laravel Template follows several principles.
-
-### 1. Keep Laravel Familiar
-
-The template does not replace Laravel's architecture.
-
-Developers should still be able to use standard Laravel documentation, Artisan commands, Composer packages, and Laravel conventions.
-
-### 2. Reduce Setup Friction
-
-A new developer should not need to remember a long list of environment commands.
-
-Instead:
-
-```bash
-./dev --setup
-```
-
-should handle the common setup process.
-
-### 3. Environment Aware
-
-The helper detects the available environment instead of assuming that every developer uses the same setup.
-
-```text
-DDEV → preferred
-PHP  → fallback
-```
-
-### 4. Explicit Database Operations
-
-Project setup does not automatically run migrations or seed the database.
-
-Database-changing operations remain explicit.
-
-### 5. Cross-Platform Workflow
-
-Linux and Windows provide equivalent helper commands:
-
-```text
-./dev
-dev.bat
-```
-
-The goal is to make team development more consistent across operating systems.
-
----
-
-# Nourivex
-
-**Nourivex** is a technology and engineering initiative focused on building structured digital systems, developer tooling, and practical software solutions.
-
-This Laravel template is maintained as a reusable engineering foundation for Nourivex projects and development workflows.
-
----
-
-# Contributing
-
-Contributions, improvements, and suggestions are welcome.
-
-Before submitting changes:
-
-1. Keep the existing Laravel structure intact.
-2. Avoid unnecessary dependencies.
-3. Keep Linux and Windows helper behavior consistent.
-4. Test changes in the intended development environment.
-5. Update the documentation when behavior changes.
-
----
-
-# License
+## License
 
 This project is open-sourced under the MIT License.
 
@@ -583,6 +371,5 @@ See the `LICENSE` file for details.
 ---
 
 <p align="center">
-  Built with Laravel · Maintained by Nourivex
+  <strong>PaduKerja</strong> · Kelompok 4 · Pemrograman Web Service · Universitas Harkat Negeri
 </p>
-
