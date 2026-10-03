@@ -1,6 +1,6 @@
 # Panduan Paket D: Akun & Keahlian
 
-> **Penanggung Jawab:** MUHAMMAD AFFIF  
+> **Penanggung Jawab:** NABE'ELA AYU NING TYAZ ZAHRA  
 > **Layanan Microservice:** Auth & Profile Service (Service 1)  
 > **Mata Kuliah:** Pemrograman Web Service — Kelompok 4 UHN  
 

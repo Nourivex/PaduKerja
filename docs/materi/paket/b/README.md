@@ -1,6 +1,6 @@
 # Panduan Paket B: Lamaran & Scoring
 
-> **Penanggung Jawab:** NABE'ELA AYU NING TYAZ ZAHRA  
+> **Penanggung Jawab:** MUHAMMAD AFFIF  
 > **Layanan Microservice:** Application & Matchmaking Service (Service 3)  
 > **Mata Kuliah:** Pemrograman Web Service — Kelompok 4 UHN  
 

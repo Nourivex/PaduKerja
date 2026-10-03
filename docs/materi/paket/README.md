@@ -13,9 +13,9 @@ Sistem PaduKerja dirancang memiliki tepat **8 REST API Inti**, terbagi secara me
 | Paket | Penanggung Jawab | Microservice | Method & Endpoint | Deskripsi Tugas |
 |:---:|---|---|---|---|
 | **[Paket A](a/README.md)** | **MUHAMAD FAHREN ANDREAN RANGKUTI** | Job Catalog Service | `GET /api/jobs`<br>`POST /api/jobs` | 1. Menampilkan & filter lowongan kerja<br>2. Recruiter memposting lowongan baru |
-| **[Paket B](b/README.md)** | **NABE'ELA AYU NING TYAZ ZAHRA** | Application & Matchmaking | `POST /api/applications`<br>`DELETE /api/applications/{id}` | 1. Mengirim lamaran + skoring otomatis<br>2. Membatalkan pengajuan lamaran |
+| **[Paket B](b/README.md)** | **MUHAMMAD AFFIF** | Application & Matchmaking | `POST /api/applications`<br>`DELETE /api/applications/{id}` | 1. Mengirim lamaran + skoring otomatis<br>2. Membatalkan pengajuan lamaran |
 | **[Paket C](c/README.md)** | **MUHAMMAD YASIR ILHAM NABIL** | Recruitment Pipeline | `PATCH /api/pipelines/{id}/status`<br>`GET /api/pipelines/{id}` | 1. Recruiter update tahap seleksi<br>2. Pelamar melihat riwayat linimasa |
-| **[Paket D](d/README.md)** | **MUHAMMAD AFFIF** | Auth & Profile Service | `POST /api/auth/login`<br>`PUT /api/profile/skills` | 1. Login pengguna & token akses JWT<br>2. Simpan/update keahlian profil |
+| **[Paket D](d/README.md)** | **NABE'ELA AYU NING TYAZ ZAHRA** | Auth & Profile Service | `POST /api/auth/login`<br>`PUT /api/profile/skills` | 1. Login pengguna & token akses JWT<br>2. Simpan/update keahlian profil |
 
 ---
 
