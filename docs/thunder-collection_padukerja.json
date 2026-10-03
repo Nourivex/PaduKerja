@@ -1,0 +1,239 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "PaduKerja — Web Service API",
+  "collectionId": "padukerja-tc-v1",
+  "dateExported": "2026-10-03T12:30:00.000Z",
+  "version": "1.2",
+  "folders": [
+    {
+      "_id": "folder_paket_d",
+      "name": "📌 Paket D: Akun & Keahlian",
+      "containerId": "",
+      "created": "2026-10-03T12:30:00.000Z"
+    },
+    {
+      "_id": "folder_paket_a",
+      "name": "📌 Paket A: Lowongan Kerja",
+      "containerId": "",
+      "created": "2026-10-03T12:30:00.000Z"
+    },
+    {
+      "_id": "folder_paket_b",
+      "name": "📌 Paket B: Lamaran & Scoring",
+      "containerId": "",
+      "created": "2026-10-03T12:30:00.000Z"
+    },
+    {
+      "_id": "folder_paket_c",
+      "name": "📌 Paket C: Seleksi Pelamar",
+      "containerId": "",
+      "created": "2026-10-03T12:30:00.000Z"
+    }
+  ],
+  "requests": [
+    {
+      "_id": "req_d_login_recruiter",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_d",
+      "name": "1. Login Recruiter (POST)",
+      "url": "http://127.0.0.1:32768/api/auth/login",
+      "method": "POST",
+      "sortNum": 10000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"recruiter@padukerja.id\",\n  \"password\": \"password123\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req_d_login_applicant",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_d",
+      "name": "2. Login Pelamar Budi (POST)",
+      "url": "http://127.0.0.1:32768/api/auth/login",
+      "method": "POST",
+      "sortNum": 20000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"budi@padukerja.id\",\n  \"password\": \"password123\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req_d_update_skills",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_d",
+      "name": "3. Simpan / Update Keahlian Profil (PUT)",
+      "url": "http://127.0.0.1:32768/api/profile/skills",
+      "method": "PUT",
+      "sortNum": 30000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{applicant_token}}"
+      },
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"skills\": [\"PHP\", \"Laravel\", \"MySQL\", \"Git\", \"Redis\", \"Docker\"]\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req_a_get_jobs",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_a",
+      "name": "1. Menampilkan Semua Lowongan (GET)",
+      "url": "http://127.0.0.1:32768/api/jobs",
+      "method": "GET",
+      "sortNum": 40000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Accept", "value": "application/json" }
+      ]
+    },
+    {
+      "_id": "req_a_filter_jobs",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_a",
+      "name": "2. Filter Lowongan by Skill & Lokasi (GET)",
+      "url": "http://127.0.0.1:32768/api/jobs?skill=Laravel&location=Jakarta",
+      "method": "GET",
+      "sortNum": 50000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "params": [
+        { "name": "skill", "value": "Laravel", "isPath": false },
+        { "name": "location", "value": "Jakarta", "isPath": false }
+      ]
+    },
+    {
+      "_id": "req_a_post_job",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_a",
+      "name": "3. Recruiter Memposting Lowongan Baru (POST)",
+      "url": "http://127.0.0.1:32768/api/jobs",
+      "method": "POST",
+      "sortNum": 60000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{recruiter_token}}"
+      },
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Cloud & DevOps Engineer\",\n  \"company\": \"PT Solusi Cloud Nusantara\",\n  \"description\": \"Mengelola deployment infrastruktur berbasis container dan CI/CD pipeline.\",\n  \"location\": \"Jakarta Pusat\",\n  \"employment_type\": \"full-time\",\n  \"salary_min\": 15000000,\n  \"salary_max\": 22000000,\n  \"quota\": 2,\n  \"requirements\": [\n    {\"skill\": \"Docker\", \"level\": \"required\", \"weight\": 3},\n    {\"skill\": \"Kubernetes\", \"level\": \"required\", \"weight\": 3},\n    {\"skill\": \"Linux\", \"level\": \"important\", \"weight\": 2},\n    {\"skill\": \"CI/CD\", \"level\": \"important\", \"weight\": 2}\n  ]\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req_b_post_application",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_b",
+      "name": "1. Kirim Lamaran + Otomatis Hitung Skor (POST)",
+      "url": "http://127.0.0.1:32768/api/applications",
+      "method": "POST",
+      "sortNum": 70000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{applicant_token}}"
+      },
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"job_id\": 2,\n  \"cover_letter\": \"Saya sangat tertarik dengan lowongan Frontend React Specialist.\",\n  \"candidate_skills\": [\"React\", \"JavaScript\", \"Tailwind CSS\", \"Git\"]\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req_b_delete_application",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_b",
+      "name": "2. Batalkan Pengajuan Lamaran (DELETE)",
+      "url": "http://127.0.0.1:32768/api/applications/1",
+      "method": "DELETE",
+      "sortNum": 80000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{applicant_token}}"
+      }
+    },
+    {
+      "_id": "req_c_patch_pipeline",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_c",
+      "name": "1. Recruiter Update Status/Tahap Seleksi (PATCH)",
+      "url": "http://127.0.0.1:32768/api/pipelines/1/status",
+      "method": "PATCH",
+      "sortNum": 90000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{recruiter_token}}"
+      },
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"stage\": \"interview\",\n  \"status\": \"in_progress\",\n  \"notes\": \"Kandidat lulus tahap assessment teknis. Menjadwalkan wawancara komprehensif.\",\n  \"interview_schedule\": {\n    \"datetime\": \"2026-10-10T10:00:00+07:00\",\n    \"type\": \"online\",\n    \"meeting_url\": \"https://meet.google.com/padukerja-sesi-interview\",\n    \"interviewer\": \"Engineering Manager & HR Specialist\"\n  }\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req_c_get_pipeline",
+      "colId": "padukerja-tc-v1",
+      "containerId": "folder_paket_c",
+      "name": "2. Pelamar Lihat Riwayat Linimasa (GET)",
+      "url": "http://127.0.0.1:32768/api/pipelines/1",
+      "method": "GET",
+      "sortNum": 100000,
+      "created": "2026-10-03T12:30:00.000Z",
+      "modified": "2026-10-03T12:30:00.000Z",
+      "headers": [
+        { "name": "Accept", "value": "application/json" }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{applicant_token}}"
+      }
+    }
+  ]
+}

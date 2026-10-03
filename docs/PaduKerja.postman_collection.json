@@ -1,0 +1,289 @@
+{
+  "info": {
+    "_postman_id": "padukerja-collection-v1",
+    "name": "PaduKerja — Web Service Test Collection",
+    "description": "Koleksi pengujian REST API PaduKerja untuk Paket A, B, C, dan D.\nUniversitas Harkat Negeri - Kelompok 4.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:32768/api",
+      "type": "string"
+    },
+    {
+      "key": "recruiter_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "applicant_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "📌 Paket D: Akun & Keahlian",
+      "description": "Service 1: Auth & Profile (MUHAMMAD AFFIF)",
+      "item": [
+        {
+          "name": "1. POST Login Recruiter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.collectionVariables.set('recruiter_token', jsonData.data.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"recruiter@padukerja.id\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "2. POST Login Pelamar (Budi)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.collectionVariables.set('applicant_token', jsonData.data.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"budi@padukerja.id\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "3. PUT Update Keahlian (Skills) Profil",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{applicant_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skills\": [\"PHP\", \"Laravel\", \"MySQL\", \"Git\", \"Redis\", \"Docker\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/profile/skills",
+              "host": ["{{base_url}}"],
+              "path": ["profile", "skills"]
+            }
+          }
+        },
+        {
+          "name": "4. GET Profil Saya (/auth/me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{applicant_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📌 Paket A: Lowongan Kerja",
+      "description": "Service 2: Job Catalog (MUHAMAD FAHREN ANDREAN RANGKUTI)",
+      "item": [
+        {
+          "name": "1. GET Daftar Semua Lowongan",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/jobs",
+              "host": ["{{base_url}}"],
+              "path": ["jobs"]
+            }
+          }
+        },
+        {
+          "name": "2. GET Filter Lowongan (by Skill & Location)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/jobs?skill=Laravel&location=Jakarta",
+              "host": ["{{base_url}}"],
+              "path": ["jobs"],
+              "query": [
+                { "key": "skill", "value": "Laravel" },
+                { "key": "location", "value": "Jakarta" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "3. POST Recruiter Posting Lowongan Baru",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{recruiter_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Cloud & DevOps Engineer\",\n  \"company\": \"PT Solusi Cloud Nusantara\",\n  \"description\": \"Mengelola deployment infrastruktur berbasis container dan CI/CD pipeline.\",\n  \"location\": \"Jakarta Pusat\",\n  \"employment_type\": \"full-time\",\n  \"salary_min\": 15000000,\n  \"salary_max\": 22000000,\n  \"quota\": 2,\n  \"requirements\": [\n    {\"skill\": \"Docker\", \"level\": \"required\", \"weight\": 3},\n    {\"skill\": \"Kubernetes\", \"level\": \"required\", \"weight\": 3},\n    {\"skill\": \"Linux\", \"level\": \"important\", \"weight\": 2},\n    {\"skill\": \"CI/CD\", \"level\": \"important\", \"weight\": 2}\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/jobs",
+              "host": ["{{base_url}}"],
+              "path": ["jobs"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📌 Paket B: Lamaran & Scoring",
+      "description": "Service 3: Application & Matchmaking (NABE'ELA AYU NING TYAZ ZAHRA)",
+      "item": [
+        {
+          "name": "1. POST Kirim Lamaran + Otomatis Hitung Match Score",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{applicant_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_id\": 2,\n  \"cover_letter\": \"Saya sangat tertarik dengan lowongan Frontend React Specialist karena memiliki keahlian terkait.\",\n  \"candidate_skills\": [\"React\", \"JavaScript\", \"Tailwind CSS\", \"Git\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/applications",
+              "host": ["{{base_url}}"],
+              "path": ["applications"]
+            }
+          }
+        },
+        {
+          "name": "2. GET Daftar Lamaran Saya",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{applicant_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/applications",
+              "host": ["{{base_url}}"],
+              "path": ["applications"]
+            }
+          }
+        },
+        {
+          "name": "3. DELETE Batalkan Pengajuan Lamaran",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{applicant_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/applications/1",
+              "host": ["{{base_url}}"],
+              "path": ["applications", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📌 Paket C: Seleksi Pelamar",
+      "description": "Service 4: Recruitment Pipeline (MUHAMMAD YASIR ILHAM NABIL)",
+      "item": [
+        {
+          "name": "1. PATCH Recruiter Update Status/Tahap Seleksi Pelamar",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{recruiter_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stage\": \"interview\",\n  \"status\": \"in_progress\",\n  \"notes\": \"Kandidat lulus tahap assessment teknis. Menjadwalkan wawancara komprehensif.\",\n  \"interview_schedule\": {\n    \"datetime\": \"2026-10-10T10:00:00+07:00\",\n    \"type\": \"online\",\n    \"meeting_url\": \"https://meet.google.com/padukerja-sesi-interview\",\n    \"interviewer\": \"Engineering Manager & HR Specialist\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/pipelines/1/status",
+              "host": ["{{base_url}}"],
+              "path": ["pipelines", "1", "status"]
+            }
+          }
+        },
+        {
+          "name": "2. GET Pelamar Melihat Riwayat Linimasa Lamaran",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{applicant_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/pipelines/1",
+              "host": ["{{base_url}}"],
+              "path": ["pipelines", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
