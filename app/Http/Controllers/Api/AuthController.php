@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
  * Class AuthController
  *
  * Mengelola fungsionalitas Paket D: Autentikasi Pengguna & Sesi Akses Token.
- * Bagian dari Layanan Microservice: Auth & Profile Service (Penanggung Jawab: MUHAMMAD AFFIF).
+ * Bagian dari Layanan Microservice: Auth & Profile Service (Penanggung Jawab: Nabe'ela Ayu Ning Tyas Zahra - 23215052).
  *
  * Pokok Bahasan Pembelajaran Mahasiswa:
  * 1. Menerima payload JSON dari body HTTP Request.

@@ -39,8 +39,8 @@
 
 **PaduKerja** adalah platform rekrutmen terintegrasi yang dibangun dengan arsitektur **microservice** dan **REST API** berstandar industri. Sistem ini dirancang untuk menyelesaikan dua masalah fundamental dalam proses rekrutmen digital:
 
-1. **Bagi Pencari Kerja** — fenomena *"black-hole resume"* di mana lamaran dikirim namun tidak pernah ada kejelasan status atau feedback.
-2. **Bagi Recruiter** — tumpukan ratusan CV PDF yang tidak relevan, tanpa mekanisme filter otomatis berbasis keahlian.
+1. **Bagi Pencari Kerja** - fenomena *"black-hole resume"* di mana lamaran dikirim namun tidak pernah ada kejelasan status atau feedback.
+2. **Bagi Recruiter** - tumpukan ratusan CV PDF yang tidak relevan, tanpa mekanisme filter otomatis berbasis keahlian.
 
 ---
 

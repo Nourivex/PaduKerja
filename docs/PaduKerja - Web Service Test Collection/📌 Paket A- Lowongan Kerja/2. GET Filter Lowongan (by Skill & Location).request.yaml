@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{base_url}}/jobs?skill=Laravel&location=Jakarta"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  skill: Laravel
+  location: Jakarta
+order: 2000

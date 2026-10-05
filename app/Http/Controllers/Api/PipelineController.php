@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
  * Class PipelineController
  *
  * Mengelola fungsionalitas Paket C: Pelacakan Linimasa & Tahapan Seleksi Pelamar.
- * Bagian dari Layanan Microservice: Recruitment Pipeline Service (Penanggung Jawab: MUHAMMAD YASIR ILHAM NABIL).
+ * Bagian dari Layanan Microservice: Recruitment Pipeline Service (Penanggung Jawab: MUHAMMAD AFFIF - 24225046).
  *
  * Pokok Bahasan Pembelajaran Mahasiswa:
  * 1. Method PATCH (Partial Update): Berbeda dari PUT yang mengganti seluruh resource, PATCH digunakan untuk

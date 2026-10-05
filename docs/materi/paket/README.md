@@ -1,8 +1,12 @@
-# Panduan Pembagian Tugas Praktikum REST API — PaduKerja
+# Panduan Pembagian Tugas Praktikum REST API - PaduKerja
 
-> Mata Kuliah: Pemrograman Web Service (5537344 / 3 SKS) — Universitas Harkat Negeri
+> Mata Kuliah: Pemrograman Web Service (5537344 / 3 SKS) - Universitas Harkat Negeri
 > Dosen Pengampu: Zaenul Arif, S.Kom., M.Kom
-> Kelompok 4: MUHAMMAD AFFIF, MUHAMAD FAHREN ANDREAN RANGKUTI, NABE'ELA AYU NING TYAZ ZAHRA, MUHAMMAD YASIR ILHAM NABIL
+> Kelompok 4:
+> - 24225046 MUHAMMAD AFFIF
+> - 23215030 M. Fahren Andrean Rangkuti
+> - 23215040 Muhammad Yasir Ilham Nabil
+> - 23215052 Nabe'ela Ayu Ning Tyas Zahra
 
 ---
 
@@ -10,12 +14,12 @@
 
 Sistem PaduKerja dirancang memiliki tepat **8 REST API Inti**, terbagi secara merata ke dalam 4 paket tugas individu untuk masing-masing anggota tim kolaborator:
 
-| Paket | Penanggung Jawab | Microservice | Method & Endpoint | Deskripsi Tugas |
-|:---:|---|---|---|---|
-| **[Paket A](a/README.md)** | **MUHAMAD FAHREN ANDREAN RANGKUTI** | Job Catalog Service | `GET /api/jobs`<br>`POST /api/jobs` | 1. Menampilkan & filter lowongan kerja<br>2. Recruiter memposting lowongan baru |
-| **[Paket B](b/README.md)** | **MUHAMMAD AFFIF** | Application & Matchmaking | `POST /api/applications`<br>`DELETE /api/applications/{id}` | 1. Mengirim lamaran + skoring otomatis<br>2. Membatalkan pengajuan lamaran |
-| **[Paket C](c/README.md)** | **MUHAMMAD YASIR ILHAM NABIL** | Recruitment Pipeline | `PATCH /api/pipelines/{id}/status`<br>`GET /api/pipelines/{id}` | 1. Recruiter update tahap seleksi<br>2. Pelamar melihat riwayat linimasa |
-| **[Paket D](d/README.md)** | **NABE'ELA AYU NING TYAZ ZAHRA** | Auth & Profile Service | `POST /api/auth/login`<br>`PUT /api/profile/skills` | 1. Login pengguna & token akses JWT<br>2. Simpan/update keahlian profil |
+| Paket | Penanggung Jawab | NIM | Microservice | Method & Endpoint | Deskripsi Tugas |
+|:---:|---|---|---|---|---|
+| **[Paket A](a/README.md)** | **M. Fahren Andrean Rangkuti** | `23215030` | Job Catalog Service | `GET /api/jobs`<br>`POST /api/jobs` | 1. Menampilkan & filter lowongan kerja<br>2. Recruiter memposting lowongan baru |
+| **[Paket B](b/README.md)** | **Muhammad Yasir Ilham Nabil** | `23215040` | Application & Matchmaking | `POST /api/applications`<br>`DELETE /api/applications/{id}` | 1. Mengirim lamaran + skoring otomatis<br>2. Membatalkan pengajuan lamaran |
+| **[Paket C](c/README.md)** | **MUHAMMAD AFFIF** | `24225046` | Recruitment Pipeline | `PATCH /api/pipelines/{id}/status`<br>`GET /api/pipelines/{id}` | 1. Recruiter update tahap seleksi<br>2. Pelamar melihat riwayat linimasa |
+| **[Paket D](d/README.md)** | **Nabe'ela Ayu Ning Tyas Zahra** | `23215052` | Auth & Profile Service | `POST /api/auth/login`<br>`PUT /api/profile/skills` | 1. Login pengguna & token akses JWT<br>2. Simpan/update keahlian profil |
 
 ---
 
@@ -23,10 +27,10 @@ Sistem PaduKerja dirancang memiliki tepat **8 REST API Inti**, terbagi secara me
 
 Masing-masing folder paket di bawah ini dapat langsung dibagikan ke anggota tim terkait untuk dipelajari, dijalankan, dan diuji secara mandiri:
 
-1. **[`docs/materi/paket/a/README.md`](a/README.md)** — Panduan lengkap Paket A (Script, Controller, Model, Request/Response Payload, Uji Coba Thunder Client & curl).
-2. **[`docs/materi/paket/b/README.md`](b/README.md)** — Panduan lengkap Paket B (Script, Controller, Rumus Skoring Weighted Jaccard, Request/Response Payload, Uji Coba).
-3. **[`docs/materi/paket/c/README.md`](c/README.md)** — Panduan lengkap Paket C (Script, Controller, Tahapan Pipeline Screening $\to$ Offering, Request/Response Payload, Uji Coba).
-4. **[`docs/materi/paket/d/README.md`](d/README.md)** — Panduan lengkap Paket D (Script, Controller, Middleware JWT, Request/Response Payload, Uji Coba).
+1. **[`docs/materi/paket/a/README.md`](a/README.md)** - Panduan lengkap Paket A (Script, Controller, Model, Request/Response Payload, Uji Coba Thunder Client & curl).
+2. **[`docs/materi/paket/b/README.md`](b/README.md)** - Panduan lengkap Paket B (Script, Controller, Rumus Skoring Weighted Jaccard, Request/Response Payload, Uji Coba).
+3. **[`docs/materi/paket/c/README.md`](c/README.md)** - Panduan lengkap Paket C (Script, Controller, Tahapan Pipeline Screening $\to$ Offering, Request/Response Payload, Uji Coba).
+4. **[`docs/materi/paket/d/README.md`](d/README.md)** - Panduan lengkap Paket D (Script, Controller, Middleware JWT, Request/Response Payload, Uji Coba).
 
 ---
 

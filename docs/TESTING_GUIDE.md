@@ -1,7 +1,7 @@
-# Panduan Pengujian API — PaduKerja (Thunder Client & Postman)
+# Panduan Pengujian API - PaduKerja (Thunder Client & Postman)
 
 > Panduan praktikum & testing REST API PaduKerja untuk **Paket A, B, C, dan D**.
-> Sesuai standar mata kuliah Pemrograman Web Service (5537344 / 3 SKS) — Kelompok 4 UHN.
+> Sesuai standar mata kuliah Pemrograman Web Service (5537344 / 3 SKS) - Kelompok 4 UHN.
 
 ---
 

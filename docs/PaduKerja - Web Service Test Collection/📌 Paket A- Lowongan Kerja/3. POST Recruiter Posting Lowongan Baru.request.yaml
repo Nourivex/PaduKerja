@@ -1,0 +1,27 @@
+$kind: http-request
+url: "{{base_url}}/jobs"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+  Authorization: Bearer {{recruiter_token}}
+body:
+  type: text
+  content: |-
+    {
+      "title": "Cloud & DevOps Engineer",
+      "company": "PT Solusi Cloud Nusantara",
+      "description": "Mengelola deployment infrastruktur berbasis container dan CI/CD pipeline.",
+      "location": "Jakarta Pusat",
+      "employment_type": "full-time",
+      "salary_min": 15000000,
+      "salary_max": 22000000,
+      "quota": 2,
+      "requirements": [
+        {"skill": "Docker", "level": "required", "weight": 3},
+        {"skill": "Kubernetes", "level": "required", "weight": 3},
+        {"skill": "Linux", "level": "important", "weight": 2},
+        {"skill": "CI/CD", "level": "important", "weight": 2}
+      ]
+    }
+order: 3000

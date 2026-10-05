@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/applications/1"
+method: DELETE
+headers:
+  Accept: application/json
+  Authorization: Bearer {{applicant_token}}
+order: 3000

@@ -1,8 +1,8 @@
 # Panduan Paket B: Lamaran & Scoring
 
-> **Penanggung Jawab:** MUHAMMAD AFFIF  
+> **Penanggung Jawab:** Muhammad Yasir Ilham Nabil (NIM: 23215040)  
 > **Layanan Microservice:** Application & Matchmaking Service (Service 3)  
-> **Mata Kuliah:** Pemrograman Web Service — Kelompok 4 UHN  
+> **Mata Kuliah:** Pemrograman Web Service - Kelompok 4 UHN  
 
 ---
 

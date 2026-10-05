@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "padukerja-collection-v1",
-    "name": "PaduKerja — Web Service Test Collection",
+    "name": "PaduKerja - Web Service Test Collection",
     "description": "Koleksi pengujian REST API PaduKerja untuk Paket A, B, C, dan D.\nUniversitas Harkat Negeri - Kelompok 4.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -25,7 +25,7 @@
   "item": [
     {
       "name": "📌 Paket D: Akun & Keahlian",
-      "description": "Service 1: Auth & Profile (MUHAMMAD AFFIF)",
+      "description": "Service 1: Auth Service 1: Auth & Profile (MUHAMMAD AFFIF) Profile (Nabe'ela Ayu Ning Tyas Zahra - 23215052)",
       "item": [
         {
           "name": "1. POST Login Recruiter",
@@ -132,7 +132,7 @@
     },
     {
       "name": "📌 Paket A: Lowongan Kerja",
-      "description": "Service 2: Job Catalog (MUHAMAD FAHREN ANDREAN RANGKUTI)",
+      "description": "Service 2: Job Catalog (M. Fahren Andrean Rangkuti - 23215030)",
       "item": [
         {
           "name": "1. GET Daftar Semua Lowongan",
@@ -190,7 +190,7 @@
     },
     {
       "name": "📌 Paket B: Lamaran & Scoring",
-      "description": "Service 3: Application & Matchmaking (NABE'ELA AYU NING TYAZ ZAHRA)",
+      "description": "Service 3: Application Service 3: Application & Matchmaking (NABE'ELA AYU NING TYAZ ZAHRA) Matchmaking (Muhammad Yasir Ilham Nabil - 23215040)",
       "item": [
         {
           "name": "1. POST Kirim Lamaran + Otomatis Hitung Match Score",
@@ -246,7 +246,7 @@
     },
     {
       "name": "📌 Paket C: Seleksi Pelamar",
-      "description": "Service 4: Recruitment Pipeline (MUHAMMAD YASIR ILHAM NABIL)",
+      "description": "Service 4: Recruitment Pipeline (MUHAMMAD AFFIF - 24225046)",
       "item": [
         {
           "name": "1. PATCH Recruiter Update Status/Tahap Seleksi Pelamar",

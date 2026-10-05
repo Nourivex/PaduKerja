@@ -1,0 +1,23 @@
+$kind: http-request
+name: 1. PATCH Recruiter Update Status/Tahap Seleksi Pelamar
+url: "{{base_url}}/pipelines/1/status"
+method: PATCH
+headers:
+  Content-Type: application/json
+  Accept: application/json
+  Authorization: Bearer {{recruiter_token}}
+body:
+  type: text
+  content: |-
+    {
+      "stage": "interview",
+      "status": "in_progress",
+      "notes": "Kandidat lulus tahap assessment teknis. Menjadwalkan wawancara komprehensif.",
+      "interview_schedule": {
+        "datetime": "2026-10-10T10:00:00+07:00",
+        "type": "online",
+        "meeting_url": "https://meet.google.com/padukerja-sesi-interview",
+        "interviewer": "Engineering Manager & HR Specialist"
+      }
+    }
+order: 1000

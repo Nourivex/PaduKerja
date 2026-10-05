@@ -1,8 +1,8 @@
 # Panduan Paket A: Lowongan Kerja
 
-> **Penanggung Jawab:** MUHAMAD FAHREN ANDREAN RANGKUTI  
+> **Penanggung Jawab:** MUHAMAD FAHREN ANDREAN RANGKUTI (NIM: 23215030)  
 > **Layanan Microservice:** Job Catalog Service (Service 2)  
-> **Mata Kuliah:** Pemrograman Web Service — Kelompok 4 UHN  
+> **Mata Kuliah:** Pemrograman Web Service - Kelompok 4 UHN  
 
 ---
 

@@ -8,7 +8,7 @@
 
     <meta
         name="description"
-        content="Nourivex Laravel Engineering Template — a modern foundation for building structured web applications."
+        content="Nourivex Laravel Engineering Template - a modern foundation for building structured web applications."
     >
 
     {{-- Favicon --}}

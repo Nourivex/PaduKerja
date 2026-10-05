@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Dokumentasi & Peta Rute REST API — Sistem PaduKerja
+| Dokumentasi & Peta Rute REST API - Sistem PaduKerja
 |--------------------------------------------------------------------------
 |
-| Mata Kuliah : Pemrograman Web Service (5537344 / 3 SKS) — Kelompok 4 UHN
+| Mata Kuliah : Pemrograman Web Service (5537344 / 3 SKS) - Kelompok 4 UHN
 | Standar     : RESTful JSON API (RFC 8259), HTTP Methods Semantics, JWT Bearer Token
 |
 | Pembagian Modul Referensi Praktikum:

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Validator;
  * Class ApplicationController
  *
  * Mengelola fungsionalitas Paket B: Pengajuan Lamaran & Mesin Skoring Otomatis.
- * Bagian dari Layanan Microservice: Application & Matchmaking Service (Penanggung Jawab: NABE'ELA AYU NING TYAZ ZAHRA).
+ * Bagian dari Layanan Microservice: Application & Matchmaking Service (Penanggung Jawab: Muhammad Yasir Ilham Nabil - 23215040).
  *
  * Pokok Bahasan Pembelajaran Mahasiswa:
  * 1. Method POST: Mengirim data lamaran pekerjaan baru dari pelamar.

@@ -1,7 +1,7 @@
-# PaduKerja — Claude/Cursor Guidelines
+# PaduKerja - Claude/Cursor Guidelines
 
 > Platform Rekrutmen Terintegrasi Berbasis Microservice dengan Mesin Pemadanan Keahlian Otomatis.
-> Mata Kuliah: Pemrograman Web Service (5537344 / 3 SKS) — Universitas Harkat Negeri — Kelompok 4.
+> Mata Kuliah: Pemrograman Web Service (5537344 / 3 SKS) - Universitas Harkat Negeri - Kelompok 4.
 
 ---
 
@@ -20,9 +20,9 @@ PaduKerja is a microservice-based recruitment platform for a university Web Serv
 
 ### Core Features
 
-1. **Automated Skill-Matchmaking Engine** — Weighted Jaccard Similarity scoring (required=3, important=2, nice_to_have=1).
-2. **Multi-Stage Pipeline Tracker** — Screening → Assessment → Interview → Offering/Rejected.
-3. **JWT Multi-Role Auth** — `applicant`, `recruiter`, `admin`.
+1. **Automated Skill-Matchmaking Engine** - Weighted Jaccard Similarity scoring (required=3, important=2, nice_to_have=1).
+2. **Multi-Stage Pipeline Tracker** - Screening → Assessment → Interview → Offering/Rejected.
+3. **JWT Multi-Role Auth** - `applicant`, `recruiter`, `admin`.
 
 ---
 
@@ -41,11 +41,11 @@ PaduKerja is a microservice-based recruitment platform for a university Web Serv
 - Return field-level `errors` object on 422 validation failures.
 
 ### DON'T:
-- **Never** access another service's database directly — use REST API calls only.
+- **Never** access another service's database directly - use REST API calls only.
 - **Never** skip the JSON envelope format in responses.
-- **Never** use session-based auth — JWT only.
-- **Never** hardcode service URLs — use `.env` configuration.
-- **Never** run migrations automatically in setup — they are manual (`./dev migrate`).
+- **Never** use session-based auth - JWT only.
+- **Never** hardcode service URLs - use `.env` configuration.
+- **Never** run migrations automatically in setup - they are manual (`./dev migrate`).
 
 ---
 
@@ -75,7 +75,7 @@ PaduKerja is a microservice-based recruitment platform for a university Web Serv
 
 ---
 
-## Key Documents — Read Before Making Changes
+## Key Documents - Read Before Making Changes
 
 | File | Content |
 |------|---------|
@@ -112,4 +112,10 @@ Thresholds: `80-100%` Excellent (auto-advance), `50-79%` Good (manual review), `
   [Rejected]     [Rejected]     [Rejected]
 ```
 
-Each transition is recorded with timestamps in the Pipeline Service. Stages only move forward — no rollback.
+Each transition is recorded with timestamps in the Pipeline Service. Stages only move forward - no rollback.
+
+---
+
+## Writing & Punctuation Style
+
+- **Punctuation rule:** DILARANG menggunakan strip panjang (em-dash U+2014 atau en-dash U+2013) di seluruh dokumentasi, kode, dan HTML. Selalu gunakan strip pendek biasa (-).

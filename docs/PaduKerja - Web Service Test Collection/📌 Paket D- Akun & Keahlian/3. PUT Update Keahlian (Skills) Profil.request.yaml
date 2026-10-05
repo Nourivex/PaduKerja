@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{base_url}}/profile/skills"
+method: PUT
+headers:
+  Content-Type: application/json
+  Accept: application/json
+  Authorization: Bearer {{applicant_token}}
+body:
+  type: text
+  content: |-
+    {
+      "skills": ["PHP", "Laravel", "MySQL", "Git", "Redis", "Docker"]
+    }
+order: 3000

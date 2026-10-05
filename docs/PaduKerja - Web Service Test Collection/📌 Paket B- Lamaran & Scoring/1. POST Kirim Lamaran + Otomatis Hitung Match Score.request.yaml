@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{base_url}}/applications"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+  Authorization: Bearer {{applicant_token}}
+body:
+  type: text
+  content: |-
+    {
+      "job_id": 2,
+      "cover_letter": "Saya sangat tertarik dengan lowongan Frontend React Specialist karena memiliki keahlian terkait.",
+      "candidate_skills": ["React", "JavaScript", "Tailwind CSS", "Git"]
+    }
+order: 1000

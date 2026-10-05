@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{base_url}}/pipelines/1"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{applicant_token}}
+order: 2000

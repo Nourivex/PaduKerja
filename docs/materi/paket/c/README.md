@@ -1,8 +1,8 @@
 # Panduan Paket C: Seleksi Pelamar
 
-> **Penanggung Jawab:** MUHAMMAD YASIR ILHAM NABIL  
+> **Penanggung Jawab:** MUHAMMAD AFFIF (NIM: 24225046)  
 > **Layanan Microservice:** Recruitment Pipeline Service (Service 4)  
-> **Mata Kuliah:** Pemrograman Web Service — Kelompok 4 UHN  
+> **Mata Kuliah:** Pemrograman Web Service - Kelompok 4 UHN  
 
 ---
 

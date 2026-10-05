@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
  * Class ProfileSkillController
  *
  * Mengelola fungsionalitas Paket D: Matriks Keahlian (Skills) Profil Pengguna.
- * Bagian dari Layanan Microservice: Auth & Profile Service (Penanggung Jawab: MUHAMMAD AFFIF).
+ * Bagian dari Layanan Microservice: Auth & Profile Service (Penanggung Jawab: Nabe'ela Ayu Ning Tyas Zahra - 23215052).
  *
  * Pokok Bahasan Pembelajaran Mahasiswa:
  * 1. Penggunaan Method HTTP "PUT" untuk memperbarui seluruh kumpulan data keahlian (replace/update array).

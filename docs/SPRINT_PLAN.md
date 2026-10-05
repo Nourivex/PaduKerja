@@ -1,4 +1,4 @@
-# Sprint Plan — PaduKerja
+# Sprint Plan - PaduKerja
 
 > Pemetaan milestone perkuliahan Semester 7 dan Product Backlog untuk Platform Rekrutmen Terintegrasi Berbasis Microservice.
 
@@ -6,25 +6,25 @@
 
 ## 1. Pemetaan Milestone Perkuliahan
 
-### Semester 7 — Pemrograman Web Service (5537344 / 3 SKS)
+### Semester 7 - Pemrograman Web Service (5537344 / 3 SKS)
 
 | Minggu | Fase | Topik / Aktivitas | Deliverable |
 |--------|------|-------------------|-------------|
-| 1–2 | **Fondasi HTTP** | Memahami protokol HTTP, methods (GET/POST/PUT/PATCH/DELETE), status codes, headers, request-response cycle | Dokumen ringkasan fondasi HTTP, setup environment DDEV |
-| 3–4 | **REST API Design** | Prinsip RESTful API, resource naming, JSON envelope standar, kontrak API, versioning | `docs/API_CONTRACT_STANDARDS.md`, endpoint design per service |
-| 5–7 | **Core Implementation** | Implementasi 4 microservices, database schema, model & migration, CRUD endpoints | Service skeleton + working CRUD endpoints |
-| 8 | **UTS** | Ujian Tengah Semester — Presentasi progress & demo API | Demo API via Postman/Insomnia, laporan progress |
-| 9–10 | **Inter-Service Communication** | Komunikasi antar service via REST, matchmaking engine, pipeline integration | Working inter-service calls, match scoring |
-| 11–12 | **Authentication & Authorization** | JWT implementation, role-based access control, middleware protection | Protected endpoints, multi-role access |
-| 13–14 | **Testing & Documentation** | API testing, integration testing, dokumentasi Postman collection, refinement | Test suite, Postman collection, API docs |
+| 1-2 | **Fondasi HTTP** | Memahami protokol HTTP, methods (GET/POST/PUT/PATCH/DELETE), status codes, headers, request-response cycle | Dokumen ringkasan fondasi HTTP, setup environment DDEV |
+| 3-4 | **REST API Design** | Prinsip RESTful API, resource naming, JSON envelope standar, kontrak API, versioning | `docs/API_CONTRACT_STANDARDS.md`, endpoint design per service |
+| 5-7 | **Core Implementation** | Implementasi 4 microservices, database schema, model & migration, CRUD endpoints | Service skeleton + working CRUD endpoints |
+| 8 | **UTS** | Ujian Tengah Semester - Presentasi progress & demo API | Demo API via Postman/Insomnia, laporan progress |
+| 9-10 | **Inter-Service Communication** | Komunikasi antar service via REST, matchmaking engine, pipeline integration | Working inter-service calls, match scoring |
+| 11-12 | **Authentication & Authorization** | JWT implementation, role-based access control, middleware protection | Protected endpoints, multi-role access |
+| 13-14 | **Testing & Documentation** | API testing, integration testing, dokumentasi Postman collection, refinement | Test suite, Postman collection, API docs |
 | 15 | **Final Integration** | Full system integration, end-to-end testing, bug fixing | Fully integrated system |
-| 16 | **UAS** | Ujian Akhir Semester — Presentasi final & demo lengkap | Final demo, laporan akhir, source code |
+| 16 | **UAS** | Ujian Akhir Semester - Presentasi final & demo lengkap | Final demo, laporan akhir, source code |
 
 ---
 
 ## 2. Sprint Breakdown
 
-### Sprint 1: Foundation (Minggu 1–2)
+### Sprint 1: Foundation (Minggu 1-2)
 
 **Goal:** Setup infrastruktur dan pemahaman fondasi.
 
@@ -36,7 +36,7 @@
 | S1-04 | Studi & ringkasan fondasi HTTP protocol | All | 🔴 High | ⬜ To Do |
 | S1-05 | Setup development helper (`./dev`) untuk multi-service | MUHAMMAD AFFIF | 🟡 Medium | ⬜ To Do |
 
-### Sprint 2: API Design (Minggu 3–4)
+### Sprint 2: API Design (Minggu 3-4)
 
 **Goal:** Finalisasi desain API dan kontrak antar service.
 
@@ -50,22 +50,22 @@
 | S2-06 | Buat docs/ARCHITECTURE.md & docs/API_CONTRACT_STANDARDS.md | All | 🟡 Medium | ⬜ To Do |
 | S2-07 | Review & approval kontrak API antar service | All | 🔴 High | ⬜ To Do |
 
-### Sprint 3: Core Implementation — Phase 1 (Minggu 5–6)
+### Sprint 3: Core Implementation - Phase 1 (Minggu 5-6)
 
 **Goal:** Implementasi skeleton service dan CRUD dasar.
 
 | ID | Task | Assignee | Priority | Status |
 |----|------|----------|----------|--------|
-| S3-01 | Model, Migration, Seeder — `users`, `user_skills`, `roles` | MUHAMMAD AFFIF | 🔴 High | ⬜ To Do |
-| S3-02 | Model, Migration, Seeder — `jobs`, `job_requirements`, `skill_tags` | MUHAMAD FAHREN A.R. | 🔴 High | ⬜ To Do |
-| S3-03 | Model, Migration, Seeder — `applications`, `match_scores`, `cv_documents` | NABE'ELA AYU N.T.Z. | 🔴 High | ⬜ To Do |
-| S3-04 | Model, Migration, Seeder — `pipeline_stages`, `stage_transitions`, `interview_schedules` | MUHAMMAD YASIR I.N. | 🔴 High | ⬜ To Do |
-| S3-05 | CRUD Controller — Auth & Profile (register, login, profile, skills) | MUHAMMAD AFFIF | 🔴 High | ⬜ To Do |
-| S3-06 | CRUD Controller — Job Catalog (jobs, requirements) | MUHAMAD FAHREN A.R. | 🔴 High | ⬜ To Do |
-| S3-07 | CRUD Controller — Applications (submit, list, detail) | NABE'ELA AYU N.T.Z. | 🔴 High | ⬜ To Do |
-| S3-08 | CRUD Controller — Pipeline (init, advance, reject, board) | MUHAMMAD YASIR I.N. | 🔴 High | ⬜ To Do |
+| S3-01 | Model, Migration, Seeder - `users`, `user_skills`, `roles` | MUHAMMAD AFFIF | 🔴 High | ⬜ To Do |
+| S3-02 | Model, Migration, Seeder - `jobs`, `job_requirements`, `skill_tags` | MUHAMAD FAHREN A.R. | 🔴 High | ⬜ To Do |
+| S3-03 | Model, Migration, Seeder - `applications`, `match_scores`, `cv_documents` | NABE'ELA AYU N.T.Z. | 🔴 High | ⬜ To Do |
+| S3-04 | Model, Migration, Seeder - `pipeline_stages`, `stage_transitions`, `interview_schedules` | MUHAMMAD YASIR I.N. | 🔴 High | ⬜ To Do |
+| S3-05 | CRUD Controller - Auth & Profile (register, login, profile, skills) | MUHAMMAD AFFIF | 🔴 High | ⬜ To Do |
+| S3-06 | CRUD Controller - Job Catalog (jobs, requirements) | MUHAMAD FAHREN A.R. | 🔴 High | ⬜ To Do |
+| S3-07 | CRUD Controller - Applications (submit, list, detail) | NABE'ELA AYU N.T.Z. | 🔴 High | ⬜ To Do |
+| S3-08 | CRUD Controller - Pipeline (init, advance, reject, board) | MUHAMMAD YASIR I.N. | 🔴 High | ⬜ To Do |
 
-### Sprint 4: Core Implementation — Phase 2 (Minggu 7)
+### Sprint 4: Core Implementation - Phase 2 (Minggu 7)
 
 **Goal:** Business logic dan validasi.
 
@@ -90,7 +90,7 @@
 | S5-03 | Bug fixing & stabilisasi CRUD endpoints | All | 🔴 High | ⬜ To Do |
 | S5-04 | Rehearsal presentasi | All | 🟡 Medium | ⬜ To Do |
 
-### Sprint 6: Inter-Service Integration (Minggu 9–10)
+### Sprint 6: Inter-Service Integration (Minggu 9-10)
 
 **Goal:** Komunikasi antar service dan matchmaking engine.
 
@@ -104,7 +104,7 @@
 | S6-06 | Pipeline auto-initialization on application submit | MUHAMMAD YASIR I.N. | 🟡 Medium | ⬜ To Do |
 | S6-07 | Interview scheduling implementation | MUHAMMAD YASIR I.N. | 🟡 Medium | ⬜ To Do |
 
-### Sprint 7: Auth & Security Hardening (Minggu 11–12)
+### Sprint 7: Auth & Security Hardening (Minggu 11-12)
 
 **Goal:** Keamanan dan access control.
 
@@ -116,21 +116,21 @@
 | S7-04 | Input sanitization & XSS prevention | All | 🟡 Medium | ⬜ To Do |
 | S7-05 | Error handling standarisasi (sesuai API_CONTRACT_STANDARDS) | All | 🔴 High | ⬜ To Do |
 
-### Sprint 8: Testing & Documentation (Minggu 13–14)
+### Sprint 8: Testing & Documentation (Minggu 13-14)
 
 **Goal:** Test coverage dan dokumentasi final.
 
 | ID | Task | Assignee | Priority | Status |
 |----|------|----------|----------|--------|
-| S8-01 | Unit test — Auth & Profile Service | MUHAMMAD AFFIF | 🔴 High | ⬜ To Do |
-| S8-02 | Unit test — Job Catalog Service | MUHAMAD FAHREN A.R. | 🔴 High | ⬜ To Do |
-| S8-03 | Unit test — Application & Matchmaking Service | NABE'ELA AYU N.T.Z. | 🔴 High | ⬜ To Do |
-| S8-04 | Unit test — Recruitment Pipeline Service | MUHAMMAD YASIR I.N. | 🔴 High | ⬜ To Do |
-| S8-05 | Integration test — inter-service communication | All | 🔴 High | ⬜ To Do |
+| S8-01 | Unit test - Auth & Profile Service | MUHAMMAD AFFIF | 🔴 High | ⬜ To Do |
+| S8-02 | Unit test - Job Catalog Service | MUHAMAD FAHREN A.R. | 🔴 High | ⬜ To Do |
+| S8-03 | Unit test - Application & Matchmaking Service | NABE'ELA AYU N.T.Z. | 🔴 High | ⬜ To Do |
+| S8-04 | Unit test - Recruitment Pipeline Service | MUHAMMAD YASIR I.N. | 🔴 High | ⬜ To Do |
+| S8-05 | Integration test - inter-service communication | All | 🔴 High | ⬜ To Do |
 | S8-06 | Finalisasi Postman collection (semua endpoint) | All | 🟡 Medium | ⬜ To Do |
 | S8-07 | Update dokumentasi (README, ARCHITECTURE, API_CONTRACT) | All | 🟡 Medium | ⬜ To Do |
 
-### Sprint 9: Final Integration & UAS (Minggu 15–16)
+### Sprint 9: Final Integration & UAS (Minggu 15-16)
 
 **Goal:** Integrasi akhir, demo final.
 
@@ -161,15 +161,15 @@
 
 | Sprint | Minggu | Items | Focus Area |
 |--------|--------|-------|------------|
-| Sprint 1 | 1–2 | 5 | Foundation & Setup |
-| Sprint 2 | 3–4 | 7 | API Design & Contract |
-| Sprint 3 | 5–6 | 8 | Core CRUD Implementation |
+| Sprint 1 | 1-2 | 5 | Foundation & Setup |
+| Sprint 2 | 3-4 | 7 | API Design & Contract |
+| Sprint 3 | 5-6 | 8 | Core CRUD Implementation |
 | Sprint 4 | 7 | 7 | Business Logic & Validation |
 | Sprint 5 | 8 | 4 | UTS Preparation |
-| Sprint 6 | 9–10 | 7 | Inter-Service Integration |
-| Sprint 7 | 11–12 | 5 | Security & Auth Hardening |
-| Sprint 8 | 13–14 | 7 | Testing & Documentation |
-| Sprint 9 | 15–16 | 6 | Final Integration & UAS |
+| Sprint 6 | 9-10 | 7 | Inter-Service Integration |
+| Sprint 7 | 11-12 | 5 | Security & Auth Hardening |
+| Sprint 8 | 13-14 | 7 | Testing & Documentation |
+| Sprint 9 | 15-16 | 6 | Final Integration & UAS |
 
 ---
 

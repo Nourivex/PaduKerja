@@ -1,4 +1,4 @@
-# Standar Kontrak API — PaduKerja
+# Standar Kontrak API - PaduKerja
 
 > Dokumen ini mendefinisikan standar global untuk seluruh request dan response payload JSON, header wajib, format error, dan contoh endpoint mock pada keempat microservice PaduKerja.
 
@@ -126,7 +126,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
 
 ## 3. Format Penanganan Error
 
-### 3.1 Validation Error — `422 Unprocessable Entity`
+### 3.1 Validation Error - `422 Unprocessable Entity`
 
 Dikembalikan ketika input tidak lolos validasi field.
 
@@ -146,7 +146,7 @@ Dikembalikan ketika input tidak lolos validasi field.
 }
 ```
 
-### 3.2 Conflict — `409 Conflict`
+### 3.2 Conflict - `409 Conflict`
 
 Dikembalikan ketika operasi menyebabkan konflik data (misalnya duplikasi).
 
@@ -165,7 +165,7 @@ Dikembalikan ketika operasi menyebabkan konflik data (misalnya duplikasi).
 }
 ```
 
-### 3.3 Unauthorized — `401 Unauthorized`
+### 3.3 Unauthorized - `401 Unauthorized`
 
 Dikembalikan ketika token tidak ada, invalid, atau expired.
 
@@ -181,7 +181,7 @@ Dikembalikan ketika token tidak ada, invalid, atau expired.
 }
 ```
 
-### 3.4 Forbidden — `403 Forbidden`
+### 3.4 Forbidden - `403 Forbidden`
 
 Dikembalikan ketika token valid tetapi user tidak memiliki akses (role tidak sesuai).
 
@@ -198,10 +198,10 @@ Dikembalikan ketika token valid tetapi user tidak memiliki akses (role tidak ses
 ```
 
 > **Perbedaan 401 vs 403:**
-> - `401` → "Siapa kamu?" — Identitas tidak diketahui (token hilang/invalid).
-> - `403` → "Kamu tidak boleh." — Identitas diketahui, tetapi hak akses tidak mencukupi.
+> - `401` → "Siapa kamu?" - Identitas tidak diketahui (token hilang/invalid).
+> - `403` → "Kamu tidak boleh." - Identitas diketahui, tetapi hak akses tidak mencukupi.
 
-### 3.5 Not Found — `404 Not Found`
+### 3.5 Not Found - `404 Not Found`
 
 ```json
 {
@@ -215,7 +215,7 @@ Dikembalikan ketika token valid tetapi user tidak memiliki akses (role tidak ses
 }
 ```
 
-### 3.6 Bad Request — `400 Bad Request`
+### 3.6 Bad Request - `400 Bad Request`
 
 ```json
 {
@@ -229,7 +229,7 @@ Dikembalikan ketika token valid tetapi user tidak memiliki akses (role tidak ses
 }
 ```
 
-### 3.7 Internal Server Error — `500 Internal Server Error`
+### 3.7 Internal Server Error - `500 Internal Server Error`
 
 ```json
 {

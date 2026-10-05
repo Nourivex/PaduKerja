@@ -1,0 +1,8 @@
+$kind: http-request
+name: 4. GET Profil Saya (/auth/me)
+url: "{{base_url}}/auth/me"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{applicant_token}}
+order: 4000

@@ -1,0 +1,13 @@
+# Use this workspace to collaborate
+workspace:
+  id: 076f8afc-dd73-48aa-809c-39498bb7474b
+
+localResources:
+  collections:
+    - ../docs/PaduKerja - Web Service Test Collection
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../docs/PaduKerja - Web Service Test Collection: padukerja-collection-v1

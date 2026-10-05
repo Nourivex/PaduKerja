@@ -96,11 +96,11 @@ sequenceDiagram
 
 ### 2.3 Aturan Komunikasi
 
-1. **Synchronous REST** — Semua komunikasi inter-service menggunakan HTTP request synchronous.
-2. **Service Discovery** — Base URL tiap service dikonfigurasi via environment variable (`.env`).
-3. **Timeout & Retry** — Setiap request inter-service memiliki timeout 5 detik dengan maksimum 2 retry.
-4. **Circuit Breaker** — Jika service target gagal >3 kali berturut-turut, request dihentikan sementara selama 30 detik.
-5. **Idempotency** — Operasi `PUT` dan `DELETE` harus idempotent.
+1. **Synchronous REST** - Semua komunikasi inter-service menggunakan HTTP request synchronous.
+2. **Service Discovery** - Base URL tiap service dikonfigurasi via environment variable (`.env`).
+3. **Timeout & Retry** - Setiap request inter-service memiliki timeout 5 detik dengan maksimum 2 retry.
+4. **Circuit Breaker** - Jika service target gagal >3 kali berturut-turut, request dihentikan sementara selama 30 detik.
+5. **Idempotency** - Operasi `PUT` dan `DELETE` harus idempotent.
 
 ---
 
@@ -163,15 +163,15 @@ flowchart TD
 
 | Range | Kategori | Aksi Default |
 |-------|----------|--------------|
-| 80–100% | Excellent Match | Auto-proceed ke Assessment |
-| 50–79% | Good Match | Masuk Screening untuk review manual |
-| 0–49% | Under Qualified | Ditandai, tetap disimpan untuk pertimbangan |
+| 80-100% | Excellent Match | Auto-proceed ke Assessment |
+| 50-79% | Good Match | Masuk Screening untuk review manual |
+| 0-49% | Under Qualified | Ditandai, tetap disimpan untuk pertimbangan |
 
 ---
 
 ## 4. Struktur Data Utama
 
-### 4.1 Service 1: Auth & Profile — `User`
+### 4.1 Service 1: Auth & Profile - `User`
 
 ```json
 {
@@ -194,7 +194,7 @@ flowchart TD
 }
 ```
 
-### 4.2 Service 2: Job Catalog — `Job`
+### 4.2 Service 2: Job Catalog - `Job`
 
 ```json
 {
@@ -225,7 +225,7 @@ flowchart TD
 }
 ```
 
-### 4.3 Service 3: Application & Matchmaking — `Application`
+### 4.3 Service 3: Application & Matchmaking - `Application`
 
 ```json
 {
@@ -244,7 +244,7 @@ flowchart TD
 }
 ```
 
-### 4.4 Service 4: Recruitment Pipeline — `PipelineTimeline`
+### 4.4 Service 4: Recruitment Pipeline - `PipelineTimeline`
 
 ```json
 {
